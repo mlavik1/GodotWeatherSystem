@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="WeatherResource" load_steps=2 format=3 uid="uid://bbtqdfvkjixub"]
+
+[ext_resource type="Script" path="res://scripts/WeatherResource.cs" id="1_xsk87"]
+
+[resource]
+script = ExtResource("1_xsk87")
+minDuration = 20000.0
+maxDuration = 80000.0
+cloudSpeed = 0.001
+cloudCover = 5.0
