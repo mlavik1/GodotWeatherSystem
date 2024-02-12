@@ -16,4 +16,6 @@ public partial class WeatherResource : Resource
     public Color cloudInnerColour = new Color(1.0f, 1.0f, 1.0f);
     [Export]
     public Color cloudOuterColour = new Color(0.5f, 0.5f, 0.5f);
+    [Export]
+    public PrecipitationResource precipitation;
 }

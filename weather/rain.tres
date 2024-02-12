@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WeatherResource" load_steps=3 format=3 uid="uid://ba3b5cyqnspgi"]
+
+[ext_resource type="Script" path="res://scripts/WeatherResource.cs" id="1_30efw"]
+[ext_resource type="Resource" uid="uid://bgvtv4uh26n6n" path="res://precipitation/rain.tres" id="1_tymnm"]
+
+[resource]
+script = ExtResource("1_30efw")
+minDuration = 40000.0
+maxDuration = 100000.0
+cloudSpeed = 0.001
+cloudCover = 10.0
+cloudInnerColour = Color(1, 1, 1, 1)
+cloudOuterColour = Color(0.5, 0.5, 0.5, 1)
+precipitation = ExtResource("1_tymnm")

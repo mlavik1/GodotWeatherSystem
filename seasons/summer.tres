@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="SeasonResource" load_steps=8 format=3 uid="uid://bs7bbxwm67f58"]
+[gd_resource type="Resource" script_class="SeasonResource" load_steps=9 format=3 uid="uid://bs7bbxwm67f58"]
 
 [ext_resource type="Script" path="res://scripts/SeasonResource.cs" id="1_eco80"]
 [ext_resource type="Script" path="res://scripts/SkyColourResource.cs" id="2_0blb8"]
-[ext_resource type="Resource" uid="uid://ds2x8q6qhj8b0" path="res://weather/fine_weather.tres" id="3_jwp1i"]
-[ext_resource type="Resource" uid="uid://bbtqdfvkjixub" path="res://weather/clouded_weather.tres" id="4_jaa62"]
+[ext_resource type="Resource" uid="uid://ds2x8q6qhj8b0" path="res://weather/fine.tres" id="3_pi4du"]
+[ext_resource type="Resource" uid="uid://bbtqdfvkjixub" path="res://weather/clouded.tres" id="4_y4cgm"]
+[ext_resource type="Resource" uid="uid://ba3b5cyqnspgi" path="res://weather/rain.tres" id="5_hprk6"]
 
 [sub_resource type="Curve" id="Curve_8bl6p"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.125, 0), 0.0, 0.0, 0, 0, Vector2(0.214286, 0.043003), 0.303207, 0.303207, 0, 0, Vector2(0.425, 1), 0.0, 0.0, 0, 0, Vector2(0.571429, 1), 0.0, 0.0, 0, 0, Vector2(0.807143, 0.0240526), 0.0, 0.0, 0, 0, Vector2(0.878571, 0), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -25,7 +26,7 @@ cloudBrightness = 0.05
 
 [resource]
 script = ExtResource("1_eco80")
-weathers = Array[Object]([ExtResource("3_jwp1i"), ExtResource("4_jaa62")])
+weathers = Array[Object]([ExtResource("3_pi4du"), ExtResource("4_y4cgm"), ExtResource("5_hprk6")])
 skyColourDaytime = SubResource("Resource_ext2d")
 skyColourNight = SubResource("Resource_p7jpd")
 dayNightCycleCurve = SubResource("Curve_8bl6p")

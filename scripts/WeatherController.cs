@@ -16,12 +16,15 @@ public partial class WeatherController : Node
 	[Export]
 	public double timeSpeedMultiplier = 1.0;
 
+	[Export]
+	public double timeofDay = 300.0;
+
 	private int currentSeasonIndex = 0;
 	private int currentWeatherIndex = 0;
 	private int nextWeatherIndex = 0;
 	private double currentWeatherLength = 0.0;
 	private double currentWeatherTime = 0.0;
-	private double timeofDay = 0.0f;
+	private GpuParticles3D particleSystem;
 
 	public void SetSeason(int seasonIndex)
 	{
@@ -29,7 +32,7 @@ public partial class WeatherController : Node
 			return;
 		currentSeasonIndex = seasonIndex;
 
-		SetWeather(0);
+		SetWeather(2);
 	}
 
 	public void SetWeather(int weatherIndex)
@@ -46,8 +49,18 @@ public partial class WeatherController : Node
 		WeatherResource weather = season.weathers[currentWeatherIndex];
 		currentWeatherLength = Mathf.Lerp(weather.minDuration, weather.maxDuration, Random.Shared.NextDouble());
 		currentWeatherTime = 0.0;
-		weather = new WeatherResource();
-		weather.minDuration = weather.maxDuration = currentWeatherLength;
+
+		if (particleSystem != null)
+		{
+			RemoveChild(particleSystem);
+			particleSystem = null;
+		}
+		if (weather.precipitation != null && weather.precipitation.particles != null)
+		{
+			particleSystem = weather.precipitation.particles.Instantiate<GpuParticles3D>();
+			GD.Print(particleSystem);
+			AddChild(particleSystem);
+		}
 	}
 
 	public override void _Ready()
@@ -98,5 +111,18 @@ public partial class WeatherController : Node
 		skyMaterial.SetShaderParameter("sky_horizon_color", horizonColour);
 		skyMaterial.SetShaderParameter("ground_horizon_color", horizonColour);
 		skyMaterial.SetShaderParameter("ground_bottom_color", groundColour);
+		//worldEnvironment.Environment.VolumetricFogEnabled = true;
+		//worldEnvironment.Environment.VolumetricFogDensity = 0.05f;
+
+		if (particleSystem != null)
+		{
+			float particleAmountRatio = Mathf.Lerp(
+				(weatherA.precipitation != null ? weatherA.precipitation.amountRatio : 0.0f),
+				(weatherB.precipitation != null ? weatherB.precipitation.amountRatio : 0.0f),
+				(float)tWeatherTime
+			);
+			particleSystem.AmountRatio = particleAmountRatio;
+			particleSystem.Transparency = Mathf.Clamp(Mathf.Sqrt(tTimeOfDay), 0.01f, 1.0f); // TODO: Do something smarter
+		}
 	}
 }
