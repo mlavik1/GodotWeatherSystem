@@ -157,6 +157,7 @@ public partial class WeatherController : Node
 				(float)tWeatherTime
 			);
 			particleSystem.AmountRatio = particleAmountRatio;
+			particleSystem.Transparency = Mathf.Sqrt(Mathf.Sqrt(Mathf.Sqrt(tTimeOfDay))); // TODO: Do something smart (this is just silly)
 		}
 
 		if (directionalLight != null)
