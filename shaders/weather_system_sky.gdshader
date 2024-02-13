@@ -21,7 +21,8 @@ uniform sampler2D cloud_texture;
 uniform sampler2D cloud_texture2;
 uniform float cloud_uv_scale = 1.0f;
 uniform float cloud_uv_scale2 = 1.0f;
-uniform float cloud_cover : hint_range(0.0, 10.0) = 1.0;
+uniform float small_cloud_cover : hint_range(0.0, 1.0) = 0.5;
+uniform float large_cloud_cover : hint_range(0.0, 1.0) = 0.5;
 uniform vec3 cloud_inner_colour : source_color = vec3(1.0, 1.0, 1.0);
 uniform vec3 cloud_outer_colour : source_color = vec3(0.5, 0.5, 0.5);
 uniform vec2 cloud_direction = vec2(1.0, 0.0);
@@ -84,10 +85,11 @@ void sky() {
 	
 	vec2 sky_uv = EYEDIR.xz / EYEDIR.y;
 	vec2 cloud_uv_offset = cloud_direction * cloud_speed * TIME;
-	float cloudsFactor = texture(cloud_texture, sky_uv * cloud_uv_scale + cloud_uv_offset).r;
-	cloudsFactor -= texture(cloud_texture2, sky_uv * cloud_uv_scale2 + cloud_uv_offset + cloud_shape_change_speed * TIME).r * cloud_cover * 0.1;
-	cloudsFactor = clamp(cloudsFactor, 0.0f, 1.0);
-	vec4 clouds_out_colour = vec4(mix(cloud_outer_colour, cloud_inner_colour, cloudsFactor), cloudsFactor);
+	float clouds1 = texture(cloud_texture, sky_uv * cloud_uv_scale + cloud_uv_offset).r;
+	float clouds2 = texture(cloud_texture2, sky_uv * cloud_uv_scale2 + cloud_uv_offset + cloud_shape_change_speed * TIME).r;
+	float clouds = clouds1 * small_cloud_cover + clouds2 * large_cloud_cover;
+	clouds = clamp(clouds, 0.0f, 1.0);
+	vec4 clouds_out_colour = vec4(mix(cloud_outer_colour, cloud_inner_colour, clouds), clouds);
 
 	if (cloud_blend_interpolated)
 		sky.rgb = mix(sky.rgb, clouds_out_colour.rgb, clouds_out_colour.a);
