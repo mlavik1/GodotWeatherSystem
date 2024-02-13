@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="WeatherResource" load_steps=3 format=3 uid="uid://ba3b5cyqnspgi"]
 
-[ext_resource type="Script" path="res://scripts/WeatherResource.cs" id="1_30efw"]
-[ext_resource type="Resource" uid="uid://bgvtv4uh26n6n" path="res://precipitation/rain.tres" id="1_tymnm"]
+[ext_resource type="Script" path="res://addons/GodotWeatherSystem/scripts/WeatherResource.cs" id="1_30efw"]
+[ext_resource type="Resource" uid="uid://bgvtv4uh26n6n" path="res://addons/GodotWeatherSystem/precipitation/rain.tres" id="1_tymnm"]
 
 [resource]
 script = ExtResource("1_30efw")

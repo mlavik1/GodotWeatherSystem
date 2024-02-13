@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="PrecipitationResource" load_steps=3 format=3 uid="uid://bgvtv4uh26n6n"]
-
-[ext_resource type="Script" path="res://scripts/PrecipitationResource.cs" id="1_i454e"]
-[ext_resource type="PackedScene" uid="uid://2hfnetgvt1n2" path="res://particles/rain_particles.tscn" id="1_lvnyi"]
-
-[resource]
-script = ExtResource("1_i454e")
-particles = ExtResource("1_lvnyi")
-amountRatio = 0.1

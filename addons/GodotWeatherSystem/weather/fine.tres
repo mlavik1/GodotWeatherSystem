@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="WeatherResource" load_steps=2 format=3 uid="uid://ds2x8q6qhj8b0"]
 
-[ext_resource type="Script" path="res://scripts/WeatherResource.cs" id="1_v4rqh"]
+[ext_resource type="Script" path="res://addons/GodotWeatherSystem/scripts/WeatherResource.cs" id="1_v4rqh"]
 
 [resource]
 script = ExtResource("1_v4rqh")
