@@ -20,7 +20,13 @@ public partial class WeatherController : Node
 	public double timeSpeedMultiplier = 100.0;
 
 	[Export]
-	public double timeofDay = 40000.0;
+	public double timeOfDay = 40000.0;
+
+	[Export]
+	public int startSeason = 0;
+
+	[Export]
+	public int startWeather = 0;
 	
 	private int currentSeasonIndex = 0;
 	private int currentWeatherIndex = 0;
@@ -31,7 +37,7 @@ public partial class WeatherController : Node
 	private double currentSeasonTime = 0.0;
 	private GpuParticles3D particleSystem;
 
-	public void SetSeason(int seasonIndex)
+	public void SetSeason(int seasonIndex, int weatherIndex = -1)
 	{
 		if (seasons.Count == 0)
 			return;
@@ -39,7 +45,7 @@ public partial class WeatherController : Node
 		currentSeasonLength = seasons[seasonIndex].durationInDays * dayDuration;
 		currentSeasonTime = 0.0f;
 
-		SetWeather(0);
+		SetWeather(weatherIndex != -1 ? weatherIndex : Random.Shared.Next() % seasons[seasonIndex].weathers.Count);
 	}
 
 	public void SetWeather(int weatherIndex)
@@ -81,7 +87,7 @@ public partial class WeatherController : Node
 			GD.PrintErr("WeatherController.directionalLight is null! Please assign it.");
 		}
 
-		SetSeason(0);
+		SetSeason(startSeason, startWeather);
 	}
 
 	public override void _Process(double delta)
@@ -101,13 +107,13 @@ public partial class WeatherController : Node
 			SetSeason(currentSeasonIndex + 1);
 		}
 
-		timeofDay = (timeofDay + delta * timeSpeedMultiplier) % dayDuration;
+		timeOfDay = (timeOfDay + delta * timeSpeedMultiplier) % dayDuration;
 
 		currentWeatherTime += delta * timeSpeedMultiplier;
 		if (currentWeatherTime >= currentWeatherLength)
 			SetWeather(nextWeatherIndex);
 		
-		float tTimeOfDay = (float)timeofDay / (float)dayDuration;
+		float tTimeOfDay = (float)timeOfDay / (float)dayDuration;
 		tTimeOfDay = 1.0f - season.dayNightCycleCurve.Sample(tTimeOfDay);
 
 		WeatherResource weatherA = season.weathers[currentWeatherIndex];
@@ -155,7 +161,7 @@ public partial class WeatherController : Node
 
 		if (directionalLight != null)
 		{
-			float tSunAngle = (float)timeofDay / (float)dayDuration;
+			float tSunAngle = (float)timeOfDay / (float)dayDuration;
 			directionalLight.GlobalRotation = new Vector3(tSunAngle * 2.0f * Mathf.Pi + Mathf.Pi * 0.5f, 0.0f, 0.0f);
 			directionalLight.LightEnergy = 1.0f - tTimeOfDay;
 		}

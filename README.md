@@ -30,6 +30,20 @@ B. Set up the weather related nodes yourself:
 3. Add a WeatherController node (available through the "add node" menu after building with MSBuild)
 4. In the WeatherController's inspector, link your directional light and world environment
 
+### Weather Controller settings
+
+The weather controller has the following settings:
+- World Environment: Link to the WorldEnvironment object. Note: you should use [world_environment.tscn](addons/GodotWeatherSystem/nodes/world_environment.tscn), since it uses a custom shader
+- Directional Light:
+- Seasons: List of SeasonResource objects
+- Day Duration: How long a day is, in seconds (controls the day-night cycles)
+- Time Speed Multiplier: How fast time moves (100 for 100s per second, etc.)
+- Time of day: Time at the beginning of the game (set to dayDuration/2 for daytime, or it will start at midnight - if set to 0)
+- Start Season: Index of the season (in the season list) to use at game start
+- Start Weather: Index of the weather (in the weather list) to use at game start. Set it to -1 if you want it to be random.
+
+![screenshot](screenshots/weather_controller_settings.jpg)
+
 ### Season settings (SeasonResource)
 
 The first thing you want to do is to create some seaons.
@@ -69,4 +83,4 @@ Note: There are currently two types of clouds: "small" and "large clouds, and th
 
 These contain a reference to a particle system (scene), and an "amount ratio", that sets the intensity of the effect (how many particles - how much rain).
 
-You can create your own particle effects. There's also a default [rain_particles.tscn][rain.tres](addons/GodotWeatherSystem/particles/rain_particles.tscn) that you can use.
+You can create your own particle effects. There's also a default [rain_particles.tscn](addons/GodotWeatherSystem/particles/rain_particles.tscn) that you can use.

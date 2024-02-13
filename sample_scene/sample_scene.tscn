@@ -66,7 +66,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.17156, -4.44619, -5.41557)
 script = ExtResource("2_bkawe")
 worldEnvironment = NodePath("WorldEnvironment")
 directionalLight = NodePath("DirectionalLight3D")
-seasons = Array[Object]([ExtResource("3_xf6m6")])
+seasons = Array[Object]([ExtResource("3_xf6m6"), null])
 timeSpeedMultiplier = 500.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="WeatherController"]
