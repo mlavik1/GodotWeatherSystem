@@ -5,7 +5,9 @@ using System;
 public partial class SeasonResource : Resource
 {
     [Export]
-	public Godot.Collections.Array<WeatherResource> weathers;
+    public string seasonId;
+    [Export]
+	public Godot.Collections.Array<WeatherOccurrenceResource> weathers;
     [Export]
     public double durationInDays = 10.0;
     [Export]

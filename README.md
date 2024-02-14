@@ -4,10 +4,12 @@ A customisable season/weather system for Godot, made in C#.
 
 **Features:**
 - Day-night cycles
+- Random weather transitions (weighted randomness)
 - Weather settings:
   - Clouds (coverage, colour)
   - Rain (precipitation)
   - Fog
+  - Probability of weather to appear
 - Season settings
   - Adjust day/night length with curve
   - Specify different types of weather for each season
@@ -38,7 +40,7 @@ The weather controller has the following settings:
 - Seasons: List of SeasonResource objects
 - Day Duration: How long a day is, in seconds (controls the day-night cycles)
 - Time Speed Multiplier: How fast time moves (100 for 100s per second, etc.)
-- Time of day: Time at the beginning of the game (set to dayDuration/2 for daytime, or it will start at midnight - if set to 0)
+- Start time: Time at the beginning of the game (set to dayDuration/2 for daytime, or it will start at midnight - if set to 0)
 - Start Season: Index of the season (in the season list) to use at game start
 - Start Weather: Index of the weather (in the weather list) to use at game start. Set it to -1 if you want it to be random.
 
@@ -54,13 +56,16 @@ You can create a season settings either by adding a new entry to the WeatherCont
 ![screenshot](screenshots/new_season.jpg)
 
 **Settings:**
-- Weathers: List of available weathers (WeatherResource) for this season
+- Weathers: List of available weathers (WeatherOccurrenceResource) for this season
 - Duration in days: How many days the season lasts
 - Sky colour daytime: How the sky looks at day time (SkyColourResource)
 - Sky colour night: How the sky looks at night (SkyColourResource)
 - Day night cycle curve: Curve that maps daytime (X axis starting at 00:00) to sky brightness. Allows you to make days longer during summer, and nights longer during winter
 
 ![screenshot](screenshots/season_settings.jpg)
+
+The weather list contains `WeatherOccurrenceResource` objects. These specify the probability of a given weather to occur, and have a "Probability Ratio" value between 0.0 and 1,0 (the higher the vlaue the more often they will appear).
+You probably don't want to save WeatherOccurrenceResource to file, but instead just click "New WeatherOccurrenceResource" and embed them directly.
 
 ### Weather settings (WeatherResource)
 
