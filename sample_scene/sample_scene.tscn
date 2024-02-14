@@ -75,8 +75,6 @@ worldEnvironment = NodePath("WorldEnvironment")
 directionalLight = NodePath("DirectionalLight3D")
 seasons = Array[Object]([ExtResource("3_xf6m6"), ExtResource("5_yrrpd")])
 timeSpeedMultiplier = 500.0
-startSeason = 1
-startWeather = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="WeatherController"]
 environment = SubResource("Environment_33mdr")
