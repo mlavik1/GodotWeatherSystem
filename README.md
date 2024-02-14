@@ -14,7 +14,7 @@ A customisable season/weather system for Godot, made in C#.
   - Adjust day/night length with curve
   - Specify different types of weather for each season
 
-![screenshot](screenshots/screenshot1.jpg)
+![screenshot](screenshots/screenshot2.jpg)
 
 ## How to use
 
