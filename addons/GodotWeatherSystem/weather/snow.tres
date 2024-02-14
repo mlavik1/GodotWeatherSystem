@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="WeatherResource" load_steps=3 format=3 uid="uid://cbxe14bclsqib"]
+
+[ext_resource type="Resource" uid="uid://c1jcfi25qvosj" path="res://addons/GodotWeatherSystem/precipitation/snow.tres" id="1_nd23j"]
+[ext_resource type="Script" path="res://addons/GodotWeatherSystem/scripts/WeatherResource.cs" id="2_qwelb"]
+
+[resource]
+script = ExtResource("2_qwelb")
+minDuration = 40000.0
+maxDuration = 100000.0
+cloudSpeed = 0.001
+smallCloudCover = 0.4
+largeCloudCover = 0.7
+cloudInnerColour = Color(0.498039, 0.498039, 0.498039, 1)
+cloudOuterColour = Color(0.243137, 0.243137, 0.243137, 1)
+precipitation = ExtResource("1_nd23j")
+fogDensity = 0.01

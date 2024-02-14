@@ -168,7 +168,7 @@ public partial class WeatherController : Node
 		
 		if (currentSeasonTime >= currentSeasonLength)
 		{
-			SetSeason(currentSeasonIndex + 1);
+			SetSeason((currentSeasonIndex + 1) % seasons.Count);
 		}
 
 		SeasonParams seasonParams = InterpolateSeasons(season, nextSeason, (float)currentSeasonTime / (float)currentSeasonLength);
