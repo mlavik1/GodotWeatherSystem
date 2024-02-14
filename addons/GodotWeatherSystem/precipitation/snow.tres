@@ -6,4 +6,4 @@
 [resource]
 script = ExtResource("2_7ldea")
 particles = ExtResource("1_syi2a")
-amountRatio = 0.1
+amountRatio = 0.25

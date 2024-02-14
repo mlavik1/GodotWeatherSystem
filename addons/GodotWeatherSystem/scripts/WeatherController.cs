@@ -198,13 +198,14 @@ public partial class WeatherController : Node
 		skyMaterial.SetShaderParameter("ground_horizon_color", horizonColour);
 		skyMaterial.SetShaderParameter("ground_bottom_color", groundColour);
 
-		worldEnvironment.Environment.VolumetricFogEnabled = weatherParams.fogDensity > 0.0f;
+		worldEnvironment.Environment.VolumetricFogEnabled = true;//weatherParams.fogDensity > 0.0f;
 		worldEnvironment.Environment.VolumetricFogDensity = weatherParams.fogDensity;
 
 		if (particleSystem != null)
 		{
 			particleSystem.AmountRatio = weatherParams.particleAmountRatio;
 			particleSystem.Transparency = Mathf.Sqrt(Mathf.Sqrt(Mathf.Sqrt(tTimeOfDay))); // TODO: Do something smart (this is just silly)
+			particleSystem.GlobalPosition = GetViewport().GetCamera3D().GlobalPosition + Vector3.Up * 10.0f;
 		}
 
 		if (directionalLight != null)
